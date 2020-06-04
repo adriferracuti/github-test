@@ -1,0 +1,17 @@
+name: PR comments
+
+on:
+  pull_request:
+    types: [created]
+  pull_request_review_comment:
+    types: [created, edited, deleted]
+
+jobs:
+  task-list-empty:
+    name: Check that all PR tasks are completed
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: WeeverApps/gha-task-list-zero@v1.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
